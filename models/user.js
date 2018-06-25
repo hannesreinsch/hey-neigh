@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 //the user schema
 const userSchema = new Schema({
-  firstNeighm: {type: String, required: true},
-  lastNeighm: {type: String, required: true},
+  firstNeighm: {type: String,},
+  lastNeighm: {type: String,},
   address: {type: String, required: true},
   email: {type: String, required: true},
   password: {type: String, required: true},

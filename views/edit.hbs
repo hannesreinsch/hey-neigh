@@ -1,0 +1,14 @@
+<h1>Edit Profile</h1>
+
+{{#if errorMessage}}
+  <p>{{errorMessage}}</p>
+{{/if}}
+
+<form action="/edit" method="post">
+  <input type="text" name="firstNeighm" id="" placeholder="Your First Name">
+  <input type="text" name="lastNeighm" id="" placeholder="Your Last Name">
+  <input type="text" name="email" id="" placeholder="{{currentUserInfo.email}}">
+  <input type="text" name="address" id="" placeholder="{{currentUserInfo.address}}">
+  <input type="password" name="password" id="" placeholder="{{currentUserInfo.password}}">
+  <input type="submit" value="Edit">
+</form>
