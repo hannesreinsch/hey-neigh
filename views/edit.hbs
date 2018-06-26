@@ -5,10 +5,15 @@
 {{/if}}
 
 <form action="/edit" method="post">
-  <input type="text" name="firstNeighm" id="" placeholder="Your First Name">
-  <input type="text" name="lastNeighm" id="" placeholder="Your Last Name">
-  <input type="text" name="email" id="" placeholder="{{currentUserInfo.email}}">
-  <input type="text" name="address" id="" placeholder="{{currentUserInfo.address}}">
-  <input type="password" name="password" id="" placeholder="{{currentUserInfo.password}}">
+  <input type="text" name="firstNeighm" id="" placeholder="Your First Name" value="{{currentUserInfo.firstNeighm}}">
+  <input type="text" name="lastNeighm" id="" placeholder="Your Last Name" value="{{currentUserInfo.lastNeighm}}">
+  <input type="text" name="email" id="" value="{{currentUserInfo.email}}">
+  <input type="text" name="address" id="" value="{{currentUserInfo.address}}">
+  <input type="password" name="password" placeholder="Please enter your password" id="" value="">
   <input type="submit" value="Edit">
+</form>
+
+<h3>Delete my Profile</h3>
+<form action="/delete" method="post">
+  <button>Delete</button>
 </form>

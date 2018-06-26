@@ -18,10 +18,13 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+        {{#if isUserLoggedIn }}
         <li class="nav-item">
-          <a class="nav-link" href="/about">About
-            <span class="sr-only">(current)</span>
-          </a>
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/signup">Sign up</a>
@@ -29,6 +32,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/login">Log in</a>
         </li>
+        {{/if}}
       </ul>
     </div>
   </nav>

@@ -20,8 +20,14 @@ const bcryptSalt = 10;
 //############################################################
 //render the edit view when accessing the /edit route 
 router.get("/edit", (req, res, next) => {
-  res.render("edit", {
-    errorMessage: ""
+    //if user is not logged in, redirect to homepage
+    if (!req.session.currentUser) {
+      res.redirect('/');
+      return;
+    }
+  
+    res.render("edit", {
+      errorMessage: ""
   });
 })
 
@@ -83,6 +89,55 @@ router.post("/edit", (req, res, next) => {
 
    });
  })
+
+
+
+
+
+//############################################################
+//##########################  DELETE  ##########################
+//############################################################
+//render the edit view when accessing the /delete route 
+router.get("/delete", (req, res, next) => {
+  //if user is not logged in, redirect to homepage
+  if (!req.session.currentUser) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render("edit", {
+    errorMessage: ""
+});
+})
+
+
+//runs when user clicks the delete button
+router.post("/delete", (req, res, next) => {
+
+  //save the ID to delete it's user  
+  const userId = req.session.currentUser._id;
+
+
+  //if user doesnt exist, display error
+  if(userId === null){
+    res.render("edit", {
+      errorMessage: `There is no User with the E-Mail: "${email}". Please Sign Up.`
+    })
+    return;
+  }
+  
+
+    //find user by id and delete
+    User.findByIdAndRemove(userId, (err, theUser) => {
+      if (err) {
+        next(err);
+        return;
+      }
+  
+      res.redirect('/logout');
+
+ });
+})
 
 
 

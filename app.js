@@ -90,7 +90,8 @@ app.use("/", editRoute);
 const aboutRoute = require("./routes/about");
 app.use("/", aboutRoute);
 
-
+const profileRoute = require("./routes/profile");
+app.use("/", profileRoute);
 
 
 module.exports = app;

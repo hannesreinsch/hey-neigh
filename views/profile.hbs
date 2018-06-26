@@ -1,0 +1,11 @@
+<h1>Profile Page</h1>
+
+{{#if isUserLoggedIn}}
+  <ul>
+    <li>{{currentUserInfo.firstNeighm}}</li>
+    <li>{{currentUserInfo.lastNeighm}}</li>
+    <li>{{currentUserInfo.email}}</li>
+    <li>{{currentUserInfo.address}}</li>
+  </ul>
+  <a href="/edit">Edit Profile</a>
+{{/if}}
