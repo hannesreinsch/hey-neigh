@@ -28,10 +28,21 @@
   </div>
   <div class="card-body">
     <p class="card-text">{{this.text}}</p>
-    <a href="#" class="btn btn-primary">Comment</a>
   </div>
   <div class="card-footer text-muted">
-    Comments
+
+    {{#each this._comments}}
+      <div>{{this._owner.firstNeighm}}</div>
+      <div>{{this._owner.lastNeighm}}</div>
+      <div>{{this.text}}</div>
+    {{/each}}
+
+    <form action="/add-comment" method="post">
+      <input name="text" type="text" placeholder="Comment">
+      <input name="postId" type="text" value="{{this._id}}" hidden>
+      <button>Send</button>
+    </form>
+    
   </div>
 </div>
 {{/each}}

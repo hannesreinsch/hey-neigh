@@ -96,6 +96,8 @@ app.use("/", profileRoute);
 const addPostRoute = require("./routes/add-post");
 app.use("/", addPostRoute);
 
+const addCommentRoute = require("./routes/add-comment");
+app.use("/", addCommentRoute);
 
 
 module.exports = app;
