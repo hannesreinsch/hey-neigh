@@ -1,12 +1,53 @@
 <h1>Sign Up</h1>
 
 {{#if errorMessage}}
-  <p>{{errorMessage}}</p>
+<p>{{errorMessage}}</p>
 {{/if}}
 
 <form action="/signup" method="post">
   <input type="text" name="email" id="" placeholder="E-Mail">
-  <input type="text" name="address" id="" placeholder="Address">
   <input type="password" name="password" id="" placeholder="Password">
+  <input type="hidden" name="latitude" placeholder="Latitude" id="lat">
+  <input type="hidden" name="longitude" placeholder="Longitude" id="lng">
+  <div id="locationField">
+    <input id="autocomplete" name="address" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
+  </div>
+
+  <table id="address">
+    <tr>
+      <td class="label">Street address</td>
+      <td class="slimField">
+        <input class="field" id="street_number" disabled="true"></input>
+      </td>
+      <td class="wideField" colspan="2">
+        <input class="field" id="route" disabled="true"></input>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">City</td>
+      <td class="wideField" colspan="3">
+        <input class="field" id="locality" disabled="true"></input>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">State</td>
+      <td class="slimField">
+        <input class="field" id="administrative_area_level_1" disabled="true"></input>
+      </td>
+      <td class="label">Zip code</td>
+      <td class="wideField">
+        <input class="field" id="postal_code" disabled="true"></input>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Country</td>
+      <td class="wideField" colspan="3">
+        <input class="field" id="country" disabled="true"></input>
+      </td>
+    </tr>
+  </table>
   <input type="submit" value="Sign Up">
 </form>
+{{!--
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUTV-rXp0MkyXfDftokR4tFGFqq0lb2zc&libraries=places"></script> --}}
+<script src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAUTV-rXp0MkyXfDftokR4tFGFqq0lb2zc&libraries=places"></script>

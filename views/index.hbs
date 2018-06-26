@@ -1,16 +1,31 @@
 <p> Welcome to {{ title }}. </p>
 
 {{#if isUserLoggedIn }}
-  <p> Hello, {{ currentUserInfo.email }}. </p>
 
+<p> Hello, {{ currentUserInfo.email }}. MAP </p>
+<div id="map"></div>
+<script>
 
+</script>
 <nav>
   <ul>
-      <li> <a href="/profile"> My Profile </a> </li>    
-      <li> <a href="/logout"> Log Out </a> </li>
+    <li>
+      <a href="/profile"> My Profile </a>
+    </li>
+    <li>
+      <a href="/logout"> Log Out </a>
+    </li>
     {{else}}
-      <li> <a href="/signup"> Sign Up </a> </li>
-      <li> <a href="/login"> Log In </a> </li>
+    <li>
+      <a href="/signup"> Sign Up </a>
+    </li>
+    <li>
+      <a href="/login"> Log In </a>
+    </li>
     {{/if}}
   </ul>
 </nav>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUTV-rXp0MkyXfDftokR4tFGFqq0lb2zc&libraries=places"></script>
