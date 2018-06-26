@@ -1,16 +1,50 @@
-<p> Welcome to {{ title }}. </p>
 
 {{#if isUserLoggedIn }}
-  <p> Hello, {{ currentUserInfo.email }}. </p>
+<div class="container">
+<p> Hello, {{ currentUserInfo.firstNeighm }}. </p>
+
+<ul>
+  <li>
+    <a href="/profile"> My Profile </a>
+  </li>
+</ul>
+
+{{#if errorMessage}}
+<p class="error-message">
+  {{ errorMessage }}
+</p>
+{{/if}}
+
+<form class="mb-5" action="/add-post" method="post">
+  <input name="text" type="text" placeholder="Write a new Post">
+  <button>Post</button>
+</form>
 
 
-<nav>
-  <ul>
-      <li> <a href="/profile"> My Profile </a> </li>    
-      <li> <a href="/logout"> Log Out </a> </li>
-    {{else}}
-      <li> <a href="/signup"> Sign Up </a> </li>
-      <li> <a href="/login"> Log In </a> </li>
-    {{/if}}
-  </ul>
-</nav>
+{{#each posts}}
+<div class="card text-center mb-5">
+  <div class="card-header">
+    {{this._owner.firstNeighm}}
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{this.text}}</p>
+    <a href="#" class="btn btn-primary">Comment</a>
+  </div>
+  <div class="card-footer text-muted">
+    Comments
+  </div>
+</div>
+{{/each}}
+</div>
+
+{{else}}
+
+<div class="header">
+<div class="container">
+<p> Welcome to {{ title }}. </p>
+</div>
+</div>
+
+
+{{/if}}
+
