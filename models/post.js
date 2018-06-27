@@ -7,9 +7,8 @@ const postSchema = new Schema({
   text: { type: String, required: true },
   _owner: { type: Schema.Types.ObjectId, ref: "User" },
   _comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
-  location: { type: { type: String }, coordinates: [Number] }
 });
-postSchema.index({ location: "2dsphere" });
+
 
 //set timestamps for the user schema
 postSchema.set("timestamps", true);

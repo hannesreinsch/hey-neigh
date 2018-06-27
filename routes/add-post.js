@@ -31,7 +31,6 @@ router.post("/add-post", (req, res, next) => {
   //save the inputs from the form in variables
   let text = req.body.text;
   let owner = req.session.currentUser._id;
-  let location = req.session.currentUser.location;
   let comments = [];
 
   //when field is empty, display error
@@ -54,6 +53,7 @@ router.post("/add-post", (req, res, next) => {
   //save the instance in database
   thePost.save(err => {
     if (err) {
+      console.log(err);
       res.render("index", {
         errorMessage: "Something went wrong. Try again later."
       });
