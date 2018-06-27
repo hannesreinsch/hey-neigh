@@ -3,14 +3,6 @@ document.addEventListener(
   () => {
     //autocomplete
     var placeSearch, autocomplete;
-    var componentForm = {
-      street_number: "short_name",
-      route: "long_name",
-      locality: "long_name",
-      administrative_area_level_1: "short_name",
-      country: "long_name",
-      postal_code: "short_name"
-    };
 
     initAutocomplete();
 
@@ -80,6 +72,14 @@ function initAutocomplete() {
 }
 
 function fillInAddress() {
+  var componentForm = {
+    street_number: "short_name",
+    route: "long_name",
+    locality: "long_name",
+    administrative_area_level_1: "short_name",
+    country: "long_name",
+    postal_code: "short_name"
+  };
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
   console.log("PLACE", place);
