@@ -1,10 +1,37 @@
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Exo:800');
+@import "node_modules/bootstrap/scss/bootstrap";
+
+
 #map {
   height: 500px;
 }
 
 html,
 body {
+  font-family: 'Exo', sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.header {
+  background-image: url("../images/toa-heftiba-95456-unsplash.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center
+}
+
+
+.h1-not-logged {
+  font-size: 100px;
+}
+
+.button-not-logged {
+  text-align: center
 }
