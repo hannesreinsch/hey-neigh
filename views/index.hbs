@@ -20,7 +20,7 @@
   </form>
 
 
-  {{#each posts}}
+  {{#each pposts}}
   <div class="card text-center mb-5">
     <div class="card-header">
       {{this._owner.firstNeighm}}
@@ -39,6 +39,7 @@
       <form action="/add-comment" method="post">
         <input name="text" type="text" placeholder="Comment">
         <input name="postId" type="text" value="{{this._id}}" hidden>
+        <input name="postLocation" class="postLocation" id="postLocation " type="text" value="{{this._owner.location}}" hidden>
         <button>Send</button>
       </form>
 
@@ -53,16 +54,23 @@
   <div class="container">
 
 
-    <h1 class="h1-not-logged"> Hey Neigh!<br>Make friends around the corner. </h1>
+    <h1 class="h1-not-logged"> Hey Neigh!
+      <br>Make friends around the corner. </h1>
 
     <div class="text-center">
-    <a class="button-not-logged btn btn-dark btn-lg" href="/signup" role="button">Get Started</a>  
+      <a class="button-not-logged btn btn-dark btn-lg" href="/signup" role="button">Get Started</a>
     </div>
 
 
   </div>
 </div>
 {{/if}}
+
+
+<script>
+  let pposts = {{{ postsStringify }}}
+  let users = {{{ usersStringify }}}
+</script>
 
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

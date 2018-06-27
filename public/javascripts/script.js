@@ -5,15 +5,17 @@ document.addEventListener(
     var placeSearch, autocomplete;
 
     initAutocomplete();
-
-    //draw map with as a Center my current location
-    var map;
-
+    //draw map with as a Center my address
     initMap();
+    placeUsers(users);
     console.log("IronGenerator JS imported successfully!");
   },
   false
 );
+
+//global variables
+
+var map;
 
 function initAutocomplete() {
   if (!document.getElementById("autocomplete")) return;
@@ -39,7 +41,6 @@ function fillInAddress() {
   };
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
-  console.log("PLACE", place);
   for (var component in componentForm) {
     document.getElementById(component).value = "";
     document.getElementById(component).disabled = false;
@@ -60,15 +61,7 @@ function fillInAddress() {
 }
 
 function initMap() {
-  /*axios
-    .get("http://localhost:3000")
-    .then(response => {
-      console.log("DEBUG USERAPI", response.data);
-    })
-    .catch(error => {
-      next(error);
-    });*/
-
+  markers = [];
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 41.3977381,
@@ -98,6 +91,13 @@ function initMap() {
           map: map,
           title: "You are here"
         });
+
+        var circle = new google.maps.Circle({
+          map: map,
+          radius: 500, // 500 meters
+          fillColor: "#AA0000"
+        });
+        circle.bindTo("center", myMarker, "position");
       },
       function() {
         console.log("Error in the geolocation service.");
@@ -106,4 +106,26 @@ function initMap() {
   } else {
     console.log("Browser does not support geolocation.");
   }
+}
+
+function placeUsers(users) {
+  users.forEach(function(user) {
+    console.log("debug user", user);
+    const center = {
+      lat: user.location.coordinates[1],
+      lng: user.location.coordinates[0]
+    };
+    const pin = new google.maps.Marker({
+      position: center,
+      map: map,
+      title: user.name
+    });
+    markers.push(pin);
+    var infoWindow = new google.maps.InfoWindow({
+      content: user.firstNeighm
+    });
+    pin.addListener("click", function() {
+      infoWindow.open(map, pin);
+    });
+  });
 }
