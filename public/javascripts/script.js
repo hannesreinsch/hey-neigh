@@ -10,49 +10,6 @@ document.addEventListener(
     var map;
 
     initMap();
-
-    //get addresses of posts around me
-    /*function getUsersAround() {
-      axios.get("http://localhost:3000/api")
-      .then( response => {
-        placeUsers(response.data.users)
-      })
-      .catch(error => {
-        next(error)
-      })
-    }
-    //geocoder
-    const geocoder = new google.maps.Geocoder();
-
-    document.getElementById("submit").addEventListener("click", function() {
-      geocodeAddress(geocoder, map);
-    });
-
-    function geocodeAddress(geocoder, resultsMap) {
-      let address = document.getElementById("address").value;
-      console.log("address");
-
-      geocoder.geocode({ address: address }, function(results, status) {
-        if (status === "OK") {
-          resultsMap.setCenter(results[0].geometry.location);
-          let marker = new google.maps.Marker({
-            map: resultsMap,
-            position: results[0].geometry.location
-          });
-          document.getElementById(
-            "latitude"
-          ).value = results[0].geometry.location.lat();
-          document.getElementById(
-            "longitude"
-          ).value = results[0].geometry.location.lng();
-        } else {
-          alert(
-            "Geocode was not successful for the following reason: " + status
-          );
-        }
-      });
-    }
-*/
     console.log("IronGenerator JS imported successfully!");
   },
   false
@@ -103,6 +60,15 @@ function fillInAddress() {
 }
 
 function initMap() {
+  /*axios
+    .get("http://localhost:3000")
+    .then(response => {
+      console.log("DEBUG USERAPI", response.data);
+    })
+    .catch(error => {
+      next(error);
+    });*/
+
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 41.3977381,
