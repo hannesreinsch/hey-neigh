@@ -1,12 +1,8 @@
  {{#if isUserLoggedIn }}
 <div class="container">
-  <p> Hello, {{ currentUserInfo.firstNeighm }}. </p>
+
   <div id="map"></div>
-  <ul>
-    <li>
-      <a href="/profile"> My Profile </a>
-    </li>
-  </ul>
+
 
   {{#if errorMessage}}
   <p class="error-message">
@@ -14,16 +10,18 @@
   </p>
   {{/if}}
 
-  <form class="mb-5" action="/add-post" method="post">
-    <input name="text" type="text" placeholder="Write a new Post">
-    <button>Post</button>
+  <form class="post-form" action="/add-post" method="post">
+    <p>Post an Activity</p>
+    <input class="post" name="text" type="text" placeholder="Tell your Neighs what's up!">
+    <button class="post-btn btn btn-light">Post</button>
   </form>
 
 
   {{#each posts}}
-  <div class="card text-center mb-5">
+  <div class="card mb-5">
     <div class="card-header">
       {{this._owner.firstNeighm}}
+      {{this._owner.lastNeighm}}
     </div>
     <div class="card-body">
       <p class="card-text">{{this.text}}</p>
@@ -31,8 +29,8 @@
     <div class="card-footer text-muted">
 
       {{#each this._comments}}
-      <div>{{this._owner.firstNeighm}}</div>
-      <div>{{this._owner.lastNeighm}}</div>
+      <div>{{this._owner.firstNeighm}} {{this._owner.lastNeighm}}</div>
+      {{!-- <div>{{this._owner.lastNeighm}}</div> --}}
       <div>{{this.text}}</div>
       {{/each}}
 
@@ -52,17 +50,18 @@
 <div class="header">
   <div class="container">
 
-
-    <h1 class="h1-not-logged"> Hey Neigh!<br>Make friends around the corner. </h1>
-
-    <div class="text-center">
-    <a class="button-not-logged btn btn-dark btn-lg" href="/signup" role="button">Get Started</a>  
+      <h1 class="h1-not-logged"><span>Hey Neigh!</span><br>Make friends around the corner. </h1>
+    <div class="text-center"></div>
+      <a class="button-not-logged btn btn-primary btn-lg" href="/signup" role="button">Get Started</a>  
     </div>
 
 
   </div>
 </div>
+
 {{/if}}
+
+
 
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

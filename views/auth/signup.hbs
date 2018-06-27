@@ -1,17 +1,20 @@
-<h1>Sign Up</h1>
+<div class="header">
+  <div class="container">
+
+<h1 class="h1-signup">Sign Up</h1>
 
 {{#if errorMessage}}
 <p>{{errorMessage}}</p>
 {{/if}}
 
-<form action="/signup" method="post">
+<form class="signup-form" action="/signup" method="post">
   <input type="text" name="email" id="" placeholder="E-Mail">
   <input type="password" name="password" id="" placeholder="Password">
-  <input type="hidden" name="latitude" placeholder="Latitude" id="lat">
-  <input type="hidden" name="longitude" placeholder="Longitude" id="lng">
   <div id="locationField">
     <input id="autocomplete" name="address" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
   </div>
+  <input type="hidden" name="latitude" placeholder="Latitude" id="lat">
+  <input type="hidden" name="longitude" placeholder="Longitude" id="lng">
 
   <table id="address">
     <tr>
@@ -46,8 +49,10 @@
       </td>
     </tr>
   </table>
+  <br>
   <input type="submit" value="Sign Up">
 </form>
-{{!--
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUTV-rXp0MkyXfDftokR4tFGFqq0lb2zc&libraries=places"></script> --}}
+</div>
+</div>
+
 <script src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAUTV-rXp0MkyXfDftokR4tFGFqq0lb2zc&libraries=places"></script>
