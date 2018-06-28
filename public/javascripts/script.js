@@ -61,8 +61,8 @@ function fillInAddress() {
 
 function initMap() {
   markers = [];
-  console.log("userRad LAT in script", userRadiusLat);
-  console.log("userRad LNG in script", userRadiusLng);
+  //console.log("userRad LAT in script", userRadiusLat);
+  //console.log("userRad LNG in script", userRadiusLng);
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: userRadiusLat,

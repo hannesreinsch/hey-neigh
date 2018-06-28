@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
   //Comment.find({});
   //let uusers = [];
   let pposts = [];
-  let aver = false;
+  //let aver = false;
 
   if (!req.session.currentUser) {
     res.redirect("/login");
@@ -63,7 +63,7 @@ router.get("/", (req, res, next) => {
           //console.log("Debug uusers", users);
           //console.log("Debug pposts", pposts);
 
-          console.log("debug post multiple", pposts);
+          //console.log("debug post multiple", pposts);
           res.render("index", {
             pposts,
             postsStringify: JSON.stringify(pposts),

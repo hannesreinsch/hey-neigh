@@ -1,16 +1,55 @@
 <div class="header">
   <div class="container">
 
-<h1>Profile Page</h1>
+    <h1>Hey, {{ user.firstNeighm}}
+    </h1>
+    <br>
+    <h1>Welcome to your profile</h1>
 
 
-<ul>
-  <li>{{user.firstNeighm}}</li>
-  <li>{{user.lastNeighm}}</li>
-  <li>{{user.email}}</li>
-  <li>{{user.address}}</li>
-</ul>
-<a href="/edit">Edit Profile</a>
+    <ul>
+      <li>First Name: {{ user.firstNeighm}}</li>
+      <li>Last Name: {{ user.lastNeighm}}</li>
+      <li>Email Address: {{ user.email}}</li>
+      <li>Home Address: {{ user.address}}</li>
+      <li>Send email to request phone Number</li>
+    </ul>
 
-  </div>
+    {{#if errorMessage}}
+    <p class="error-message">
+      {{ errorMessage }}
+    </p>
+    {{/if}}
+
+    <p>Your Activity Posts</p>
+
+    {{#each posts}}
+    <div class="card text-center mb-5">
+
+      <div class="card-header">
+
+        <a href="/profile/{{this._owner._id}}">
+          {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{this.text}}</p>
+      </div>
+      <div class="card-footer text-muted">
+
+        {{#each this._comments}}
+        <div>
+          <a href="/profile/{{this._owner._id}}">
+            {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+          </a>
+        </div>
+        <div>{{this.text}}</div>
+        {{/each}}
+
+      </div>
+    </div>
+    {{/each}}
+    <a href="/edit">Edit Profile</a>
+
+
   </div>

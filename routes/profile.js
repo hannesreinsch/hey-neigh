@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const User = require("../models/user");
+const Post = require("../models/post");
 
 const router = express.Router();
 
@@ -14,16 +15,31 @@ router.get("/profile/:id", (req, res, next) => {
     res.redirect("/");
     return;
   }
-
   let userId = req.params.id;
-
-  User.findOne({'_id': userId})
+  // console.log("userId", userId);
+  User.findOne({ _id: userId })
     .then(user => {
-      res.render("profile", { user })
+      Post.find({ _owner: userId })
+        .populate("_owner")
+        .populate({
+          path: "_comments",
+          model: "Comment",
+          populate: {
+            path: "_owner",
+            model: "User"
+          }
+        })
+        .then(posts => {
+          //console.log("searching for my posts", { posts });
+          res.render("profile", { posts, user });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
-    .catch(error => {
-      console.log(error)
-    })
-  })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 module.exports = router;
