@@ -1,14 +1,18 @@
 <div class="header">
   <div class="container">
 
-    <h1>Profile Page</h1>
+    <h1>Hey, {{ user.firstNeighm}}
+    </h1>
+    <br>
+    <h1>Welcome to your profile</h1>
 
 
     <ul>
-      <li>{{user.firstNeighm}}</li>
-      <li>{{user.lastNeighm}}</li>
-      <li>{{user.email}}</li>
-      <li>{{user.address}}</li>
+      <li>First Name: {{ user.firstNeighm}}</li>
+      <li>Last Name: {{ user.lastNeighm}}</li>
+      <li>Email Address: {{ user.email}}</li>
+      <li>Home Address: {{ user.address}}</li>
+      <li>Send email to request phone Number</li>
     </ul>
 
     {{#if errorMessage}}
