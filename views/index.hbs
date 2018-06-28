@@ -20,7 +20,7 @@
   {{#each pposts}}
   <div class="card text-center mb-5">
     <div class="card-header">
-      <a href="/profile">
+      <a href="/profile/{{this._owner._id}}">
         {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
       </a>
     </div>
@@ -31,7 +31,7 @@
 
       {{#each this._comments}}
       <div>
-        <a href="/profile">
+        <a href="/profile/{{this._owner._id}}">
           {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
         </a>
       </div>

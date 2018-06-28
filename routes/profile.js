@@ -9,27 +9,36 @@ const Post = require("../models/post");
 const router = express.Router();
 
 //render the profile view when accessing the /profile route
-router.get("/profile", (req, res, next) => {
+router.get("/profile/:id", (req, res, next) => {
   //if theres no user logged in, redirect to homepage
   if (!req.session.currentUser) {
     res.redirect("/");
     return;
   }
-  let userId = req.session.currentUser._id;
+  let userId = req.params.id;
   // console.log("userId", userId);
-  Post.find({ _owner: userId })
-    .populate("_owner")
-    .populate({
-      path: "_comments",
-      model: "Comment",
-      populate: {
-        path: "_owner",
-        model: "User"
-      }
+  User.findOne({ _id: userId })
+    .then(user => {
+      Post.find({ _owner: userId })
+        .populate("_owner")
+        .populate({
+          path: "_comments",
+          model: "Comment",
+          populate: {
+            path: "_owner",
+            model: "User"
+          }
+        })
+        .then(posts => {
+          //console.log("searching for my posts", { posts });
+          res.render("profile", { posts, user });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     })
-    .then(posts => {
-      console.log("searching for my posts", { posts });
-      res.render("profile", { posts });
+    .catch(err => {
+      console.log(err);
     });
 });
 
