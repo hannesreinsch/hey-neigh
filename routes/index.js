@@ -10,6 +10,16 @@ router.get("/", (req, res, next) => {
   //let uusers = [];
   let pposts = [];
   let aver = false;
+
+  if (!req.session.currentUser) {
+    res.redirect("/login");
+    return;
+  }
+
+  let userRadius = req.session.currentUser.location.coordinates;
+  let userRadLng = userRadius[0];
+  let userRadLat = userRadius[1];
+  //console.log("debug current userRad", userRadLng, userRadLat);
   Post.find({})
     .populate("_owner")
     .populate({
@@ -24,9 +34,12 @@ router.get("/", (req, res, next) => {
       User.find({
         location: {
           $near: {
-            $geometry: { type: "Point", coordinates: [13.4529455, 52.4999521] },
+            $geometry: {
+              type: "Point",
+              coordinates: [userRadius[0], userRadius[1]]
+            },
             $minDistance: 0,
-            $maxDistance: 10000 // = 1km
+            $maxDistance: 1000 // = 1km
           }
         }
       })
@@ -41,24 +54,23 @@ router.get("/", (req, res, next) => {
               //console.log("typeof", typeof user._id.toString());
               if (user._id.toString() == post._owner._id.toString()) {
                 // console.log("yey true");
-                users.push(user);
+                //users.push(user);
                 pposts.push(post);
-                aver = true;
-              } else {
-                return;
+                //aver = true;
               }
             });
           });
-          console.log("Debug uusers", users);
-          console.log("Debug pposts", pposts);
-          if (aver) {
-            res.render("index", {
-              pposts,
-              postsStringify: JSON.stringify(pposts),
-              users,
-              usersStringify: JSON.stringify(users)
-            });
-          }
+          //console.log("Debug uusers", users);
+          //console.log("Debug pposts", pposts);
+
+          console.log("debug post multiple", pposts);
+          res.render("index", {
+            pposts,
+            postsStringify: JSON.stringify(pposts),
+            usersStringify: JSON.stringify(users),
+            userRadLng,
+            userRadLat
+          });
         })
         .catch(err => {
           throw err;

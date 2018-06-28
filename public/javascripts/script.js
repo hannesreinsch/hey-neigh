@@ -7,14 +7,13 @@ document.addEventListener(
     initAutocomplete();
     //draw map with as a Center my address
     initMap();
-    placeUsers(users);
+
     console.log("IronGenerator JS imported successfully!");
   },
   false
 );
 
 //global variables
-
 var map;
 
 function initAutocomplete() {
@@ -62,70 +61,62 @@ function fillInAddress() {
 
 function initMap() {
   markers = [];
+  console.log("userRad LAT in script", userRadiusLat);
+  console.log("userRad LNG in script", userRadiusLng);
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
-      lat: 41.3977381,
-      lng: 2.190471916
+      lat: userRadiusLat,
+      lng: userRadiusLng
     },
     zoom: 8
   });
+  // Add a marker for your user location
+  const myMarker = new google.maps.Marker({
+    position: {
+      lat: userRadiusLat,
+      lng: userRadiusLng
+    },
+    map: map,
+    title: "You live here"
+  });
 
-  //retrieve current location
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        const user_location = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
+  // Center map with user location
+  var circle = new google.maps.Circle({
+    map: map,
+    radius: 1000, // 500 meters
+    fillColor: "#AA0000"
+  });
+  circle.bindTo("center", myMarker, "position");
+  var myWindow = new google.maps.InfoWindow({
+    content: "This is my home!!"
+  });
+  myMarker.addListener("click", function() {
+    console.log("this should work");
+    myWindow.open(map, myMarker);
+  });
 
-        // Center map with user location
-        map.setCenter(user_location);
-
-        // Add a marker for your user location
-        const myMarker = new google.maps.Marker({
-          position: {
-            lat: user_location.lat,
-            lng: user_location.lng
-          },
-          map: map,
-          title: "You are here"
-        });
-
-        var circle = new google.maps.Circle({
-          map: map,
-          radius: 500, // 500 meters
-          fillColor: "#AA0000"
-        });
-        circle.bindTo("center", myMarker, "position");
-      },
-      function() {
-        console.log("Error in the geolocation service.");
-      }
-    );
-  } else {
-    console.log("Browser does not support geolocation.");
-  }
-}
-
-function placeUsers(users) {
   users.forEach(function(user) {
-    console.log("debug user", user);
-    const center = {
-      lat: user.location.coordinates[1],
-      lng: user.location.coordinates[0]
-    };
-    const pin = new google.maps.Marker({
-      position: center,
-      map: map,
-      title: user.name
-    });
-    markers.push(pin);
-    var infoWindow = new google.maps.InfoWindow({
-      content: user.firstNeighm
-    });
-    pin.addListener("click", function() {
-      infoWindow.open(map, pin);
-    });
+    if (
+      user.location.coordinates[1] !== userRadiusLat &&
+      user.location.coordinates[0] !== userRadiusLng
+    ) {
+      const center = {
+        lat: user.location.coordinates[1],
+        lng: user.location.coordinates[0]
+      };
+      const pin = new google.maps.Marker({
+        position: center,
+        map: map,
+        title: user.name
+      });
+      //console.log("debug pin", pin);
+      markers.push(pin);
+      var infowindow = new google.maps.InfoWindow({
+        content: user.firstNeighm + " " + user.lastNeighm
+      });
+      pin.addListener("click", function() {
+        infowindow.open(map, pin);
+      });
+    }
   });
 }
