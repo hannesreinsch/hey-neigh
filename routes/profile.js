@@ -16,8 +16,7 @@ router.get("/profile/:id", (req, res, next) => {
   }
 
   let userId = req.params.id;
-  
-  console.log(userId);
+
   User.findOne({'_id': userId})
     .then(user => {
       res.render("profile", { user })
