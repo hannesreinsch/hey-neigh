@@ -20,8 +20,10 @@
   {{#each posts}}
   <div class="card mb-5">
     <div class="card-header">
+      <a href="/profile">
       {{this._owner.firstNeighm}}
       {{this._owner.lastNeighm}}
+      </a>
     </div>
     <div class="card-body">
       <p class="card-text">{{this.text}}</p>
@@ -29,8 +31,12 @@
     <div class="card-footer text-muted">
 
       {{#each this._comments}}
-      <div>{{this._owner.firstNeighm}} {{this._owner.lastNeighm}}</div>
-      {{!-- <div>{{this._owner.lastNeighm}}</div> --}}
+      <div>
+        <a href="/profile">
+        {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+        </a>
+      </div>
+
       <div>{{this.text}}</div>
       {{/each}}
 
