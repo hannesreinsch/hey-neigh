@@ -1,17 +1,52 @@
 <div class="header">
   <div class="container">
 
-<h1>Profile Page</h1>
+    <h1>Profile Page</h1>
 
-{{#if isUserLoggedIn}}
-<ul>
-  <li>{{currentUserInfo.firstNeighm}}</li>
-  <li>{{currentUserInfo.lastNeighm}}</li>
-  <li>{{currentUserInfo.email}}</li>
-  <li>{{currentUserInfo.address}}</li>
-</ul>
-<a href="/edit">Edit Profile</a>
-{{/if}}
+    {{#if isUserLoggedIn}}
+    <ul>
+      <li>{{currentUserInfo.firstNeighm}}</li>
+      <li>{{currentUserInfo.lastNeighm}}</li>
+      <li>{{currentUserInfo.email}}</li>
+      <li>{{currentUserInfo.address}}</li>
+    </ul>
 
-  </div>
+    {{#if errorMessage}}
+    <p class="error-message">
+      {{ errorMessage }}
+    </p>
+    {{/if}}
+
+    <p>Your Activity Posts</p>
+
+    {{#each posts}}
+    <div class="card text-center mb-5">
+
+      <div class="card-header">
+
+        <a href="/profile">
+          {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+        </a>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{this.text}}</p>
+      </div>
+      <div class="card-footer text-muted">
+
+        {{#each this._comments}}
+        <div>
+          <a href="/profile">
+            {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+          </a>
+        </div>
+        <div>{{this.text}}</div>
+        {{/each}}
+
+      </div>
+    </div>
+    {{/each}}
+    <a href="/edit">Edit Profile</a>
+    {{/if}}
+
+
   </div>

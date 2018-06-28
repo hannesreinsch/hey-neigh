@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const User = require("../models/user");
+const Post = require("../models/post");
 
 const router = express.Router();
 
@@ -14,13 +15,22 @@ router.get("/profile", (req, res, next) => {
     res.redirect("/");
     return;
   }
-
-  let userId = req.params._id;
-  console.log(userId);
-  
-  // User.findById()
-
-  res.render("profile");
+  let userId = req.session.currentUser._id;
+  // console.log("userId", userId);
+  Post.find({ _owner: userId })
+    .populate("_owner")
+    .populate({
+      path: "_comments",
+      model: "Comment",
+      populate: {
+        path: "_owner",
+        model: "User"
+      }
+    })
+    .then(posts => {
+      console.log("searching for my posts", { posts });
+      res.render("profile", { posts });
+    });
 });
 
 module.exports = router;
