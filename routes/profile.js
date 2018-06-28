@@ -14,6 +14,12 @@ router.get("/profile", (req, res, next) => {
     res.redirect("/");
     return;
   }
+
+  let userId = req.params._id;
+  console.log(userId);
+  
+  // User.findById()
+
   res.render("profile");
 });
 

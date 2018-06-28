@@ -4,6 +4,9 @@ $primary: #FFFFFF;
 @import url('https://fonts.googleapis.com/css?family=Exo:800');
 @import "node_modules/bootstrap/scss/bootstrap";
 
+a{
+  color: black
+}
 
 #map {
   height: 500px;

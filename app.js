@@ -97,8 +97,8 @@ app.use("/", aboutRoute);
 const profileRoute = require("./routes/profile");
 app.use("/", profileRoute);
 
-const addPostRoute = require("./routes/add-post");
-app.use("/", addPostRoute);
+const addAndDeletePostRoute = require("./routes/add-and-delete-post");
+app.use("/", addAndDeletePostRoute);
 
 const addCommentRoute = require("./routes/add-comment");
 app.use("/", addCommentRoute);

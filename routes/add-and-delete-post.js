@@ -64,4 +64,46 @@ router.post("/add-post", (req, res, next) => {
   });
 });
 
+
+//############################################################
+//##########################  DELETE  ########################
+//############################################################
+//render the edit view when accessing the /delete route
+router.get("/delete-post", (req, res, next) => {
+  //if user is not logged in, redirect to homepage
+  if (!req.session.currentUser) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("index", {
+    errorMessage: ""
+  });
+});
+
+//runs when user clicks the delete button
+router.post("/delete-post", (req, res, next) => {
+  //save the ID to delete it's user
+  const userId = req.session.currentUser._id;
+
+  //if user doesnt exist, display error
+  if (userId === null) {
+    res.render("edit", {
+      errorMessage: `There is no User with the E-Mail: "${email}". Please Sign Up.`
+    });
+    return;
+  }
+
+  //find user by id and delete
+  User.findByIdAndRemove(userId, (err, theUser) => {
+    if (err) {
+      next(err);
+      return;
+    }
+
+    res.redirect("/logout");
+  });
+});
+
+
 module.exports = router;
