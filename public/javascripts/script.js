@@ -68,7 +68,7 @@ function initMap() {
       lat: userRadiusLat,
       lng: userRadiusLng
     },
-    zoom: 8
+    zoom: 14
   });
   // Add a marker for your user location
   const myMarker = new google.maps.Marker({
@@ -107,13 +107,29 @@ function initMap() {
       const pin = new google.maps.Marker({
         position: center,
         map: map,
-        title: user.name
+        title: user.name,
+        url: "/profile/user._id"
       });
-      //console.log("debug pin", pin);
+      var userId = user._id;
+      console.log("debug userid", user._id.toString());
+      var contentString =
+        '<h1 id="firstHeading" class="firstHeading">' +
+        user.firstNeighm +
+        " " +
+        user.lastNeighm +
+        "</h1>" +
+        "<p>Wanna know what your neighbour is up to tonight??</p>" +
+        "<a href=/profile/" +
+        userId +
+        ">" +
+        "Check it out here!" +
+        "</a>";
+      // console.log("debug contentS", contentString);
       markers.push(pin);
       var infowindow = new google.maps.InfoWindow({
-        content: user.firstNeighm + " " + user.lastNeighm
+        content: contentString
       });
+
       pin.addListener("click", function() {
         infowindow.open(map, pin);
       });

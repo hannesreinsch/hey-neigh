@@ -6,9 +6,8 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   text: { type: String, required: true },
   _owner: { type: Schema.Types.ObjectId, ref: "User" },
-  _comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+  _comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
 });
-
 
 //set timestamps for the user schema
 postSchema.set("timestamps", true);

@@ -31,6 +31,9 @@
         <a href="/profile/{{this._owner._id}}">
           {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
         </a>
+        <p class="dateCard">{{this.hour}}
+          <br>{{this.date}}</p>
+        </p>
       </div>
       <div class="card-body">
         <p class="card-text">{{this.text}}</p>
@@ -42,6 +45,7 @@
           <a href="/profile/{{this._owner._id}}">
             {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
           </a>
+          <p>{{this.createdAt}}</p>
         </div>
         <div>{{this.text}}</div>
         {{/each}}
