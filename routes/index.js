@@ -52,9 +52,7 @@ router.get("/", (req, res, next) => {
               if (user._id.toString() == post._owner._id.toString()) {
                 post.date = post.createdAt.toLocaleDateString();
                 post.hour = post.createdAt.toLocaleTimeString();
-                //post._comments;
-                //console.log("postdate", post.date);
-                //console.log("post comment", post._comments);
+
                 post._comments.forEach(comment => {
                   comment.date = comment.createdAt.toLocaleDateString();
                   comment.hour = comment.createdAt.toLocaleTimeString();
