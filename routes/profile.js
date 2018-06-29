@@ -10,6 +10,7 @@ const router = express.Router();
 
 //render the profile view when accessing the /profile route
 router.get("/profile/:id", (req, res, next) => {
+  let pposts = [];
   //if theres no user logged in, redirect to homepage
   if (!req.session.currentUser) {
     res.redirect("/");
@@ -34,9 +35,10 @@ router.get("/profile/:id", (req, res, next) => {
           posts.forEach(post => {
             post.date = post.createdAt.toLocaleDateString();
             post.hour = post.createdAt.toLocaleTimeString();
-            posts.push(post);
+            pposts.push(post);
           });
-          res.render("profile", { posts, user });
+
+          res.render("profile", { pposts, user });
         })
         .catch(err => {
           console.log(err);

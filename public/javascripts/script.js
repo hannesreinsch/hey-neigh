@@ -83,7 +83,7 @@ function initMap() {
   // Center map with user location
   var circle = new google.maps.Circle({
     map: map,
-    radius: 1000, // 500 meters
+    radius: 2000, // 500 meters
     fillColor: "#AA0000"
   });
   circle.bindTo("center", myMarker, "position");
