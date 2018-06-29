@@ -15,7 +15,7 @@ const MongoStore = require("connect-mongo")(session);
 mongoose.Promise = Promise;
 mongoose
   .connect(
-    "mongodb://localhost/heyneigh",
+    process.env.MONGODB_URI,
     { useMongoClient: true }
   )
   .then(() => {
