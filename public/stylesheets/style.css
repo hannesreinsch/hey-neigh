@@ -6350,7 +6350,7 @@ body {
   justify-content: space-between; }
 
 .card-footer {
-  padding: 0rem 0rem;
+  padding: 0.75rem 1.25rem;
   font-size: 15px; }
 
 .card-header {
@@ -6361,7 +6361,7 @@ body {
   margin-left: 60%; }
 
 .commD {
-  background-color: #0789b4;
+  background-color: #72aae9;
   width: 100%; }
 
 .commD p {
@@ -6371,7 +6371,7 @@ body {
   color: black; }
 
 .profCom {
-  background-color: #0789b4;
+  background-color: #72aae9;
   color: black; }
 
 ul li {

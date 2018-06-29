@@ -10,6 +10,7 @@ router.get("/", (req, res, next) => {
   //let dates = [];
   let pposts = [];
   //let hours = [];
+  let comments = [];
 
   if (!req.session.currentUser) {
     res.redirect("/login");
@@ -19,25 +20,20 @@ router.get("/", (req, res, next) => {
   let userRadius = req.session.currentUser.location.coordinates;
   let userRadLng = userRadius[0];
   let userRadLat = userRadius[1];
-  //console.log("debug current userRad", userRadLng, userRadLat);
+
   Post.find({})
     .populate("_owner")
-    //.populate("_comments") MAYBE YOU NEED IT
+
     .populate({
       path: "_comments",
       model: "Comment",
       populate: {
         path: "_owner",
         model: "User"
-      },
-      // populate: {
-      //   path: "createdAt",
-      //   model: "Comment"
-      // },
+      }
     })
-  
+
     .then(posts => {
-     
       User.find({
         location: {
           $near: {
@@ -51,29 +47,22 @@ router.get("/", (req, res, next) => {
         }
       })
         .then(users => {
-          //console.log("radius users", users); YES WORKS!!!!!
-          // console.log("debug users", users);
           posts.forEach(post => {
-            // console.log("debug post", post);
-            if(post._comments.length > 0){
-              console.log("precise id post", post._comments);
-            } else {
-              console.log('yolo')
-            }
             users.forEach(user => {
-              //console.log("precise id USER", user._id.toString());
-              //console.log("typeof", typeof user._id.toString());
               if (user._id.toString() == post._owner._id.toString()) {
-                // console.log("yey true");
-                //users.push(user);
-                // console.log(post.createdAt.toLocaleTimeString());
-                //dates.push(post.createdAt.toLocaleDateString());
-                // hours.push(post.createdAt.toLocaleTimeString());
-
                 post.date = post.createdAt.toLocaleDateString();
                 post.hour = post.createdAt.toLocaleTimeString();
                 //post._comments;
+                //console.log("postdate", post.date);
+                //console.log("post comment", post._comments);
+                post._comments.forEach(comment => {
+                  comment.date = comment.createdAt.toLocaleDateString();
+                  comment.hour = comment.createdAt.toLocaleTimeString();
+
+                  comments.push(comment);
+                });
                 pposts.push(post);
+                //console.log(comments);
               }
             });
           });
@@ -84,7 +73,8 @@ router.get("/", (req, res, next) => {
             postsStringify: JSON.stringify(pposts),
             usersStringify: JSON.stringify(users),
             userRadLng,
-            userRadLat
+            userRadLat,
+            comments
           });
         })
         .catch(err => {
