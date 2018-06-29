@@ -19,18 +19,17 @@
     <p class="error-message">
       {{ errorMessage }}
     </p>
-    {{/if}}
-
-    <p>Your Activity Posts</p>
-
-    {{#each posts}}
+    {{/if}} {{#each posts}}
     <div class="card text-center mb-5">
 
       <div class="card-header">
 
         <a href="/profile/{{this._owner._id}}">
-          {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+          <h4>You asked Neighs</h4>
         </a>
+        <p class="dateCard">{{this.hour}}
+          <br>{{this.date}}</p>
+        </p>
       </div>
       <div class="card-body">
         <p class="card-text">{{this.text}}</p>
@@ -38,10 +37,11 @@
       <div class="card-footer text-muted">
 
         {{#each this._comments}}
-        <div>
+        <div class="commD">
           <a href="/profile/{{this._owner._id}}">
-            {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
+            NeighNeigh {{this._owner.firstNeighm}} {{this._owner.lastNeighm}} replied
           </a>
+          <p>{{this.createdAt}}</p>
         </div>
         <div>{{this.text}}</div>
         {{/each}}

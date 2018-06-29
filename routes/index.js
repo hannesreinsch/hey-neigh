@@ -7,9 +7,9 @@ const Comment = require("../models/comment");
 /* GET home page */
 router.get("/", (req, res, next) => {
   //Comment.find({});
-  //let uusers = [];
+  //let dates = [];
   let pposts = [];
-  //let aver = false;
+  //let hours = [];
 
   if (!req.session.currentUser) {
     res.redirect("/login");
@@ -55,13 +55,17 @@ router.get("/", (req, res, next) => {
               if (user._id.toString() == post._owner._id.toString()) {
                 // console.log("yey true");
                 //users.push(user);
+                // console.log(post.createdAt.toLocaleTimeString());
+                //dates.push(post.createdAt.toLocaleDateString());
+                // hours.push(post.createdAt.toLocaleTimeString());
+
+                post.date = post.createdAt.toLocaleDateString();
+                post.hour = post.createdAt.toLocaleTimeString();
+                //post._comments;
                 pposts.push(post);
-                //aver = true;
               }
             });
           });
-          //console.log("Debug uusers", users);
-          //console.log("Debug pposts", pposts);
 
           //console.log("debug post multiple", pposts);
           res.render("index", {

@@ -30,7 +30,12 @@ router.get("/profile/:id", (req, res, next) => {
           }
         })
         .then(posts => {
-          //console.log("searching for my posts", { posts });
+          //console.log("searching for my posts", posts._comments);
+          posts.forEach(post => {
+            post.date = post.createdAt.toLocaleDateString();
+            post.hour = post.createdAt.toLocaleTimeString();
+            posts.push(post);
+          });
           res.render("profile", { posts, user });
         })
         .catch(err => {

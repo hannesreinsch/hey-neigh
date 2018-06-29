@@ -2,7 +2,11 @@
  {{#if isUserLoggedIn }}
 <div class="container">
 
+
+  {{hours}}
+
   <div id="map"></div>
+
 
 
   {{#if errorMessage}}
@@ -12,35 +16,40 @@
   {{/if}}
 
   <form class="post-form" action="/add-post" method="post">
-    <p>Post an Activity</p>
+    <p>Share with your NeighNeighs what you're up to!</p>
     <input class="post" name="text" type="text" placeholder="Tell your Neighs what's up!">
     <button class="post-btn btn btn-light">Post</button>
   </form>
 
 
   {{#each pposts}}
-  <div class="card mb-5">
+
+  <div class="card text-center mb-5">
     <div class="card-header">
       <a href="/profile/{{this._owner._id}}">
         {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
       </a>
+
     </div>
     <div class="card-body">
+
       <p class="card-text">{{this.text}}</p>
+      <p class="dateCard">{{this.hour}}
+        <br>{{this.date}}</p>
     </div>
     <div class="card-footer text-muted">
 
       {{#each this._comments}}
-      <div>
+      <div class="profCom">
         <a href="/profile/{{this._owner._id}}">
           {{this._owner.firstNeighm}} {{this._owner.lastNeighm}}
         </a>
+        <p>{{this.createdAt}}</p>
       </div>
 
       <div>{{this.text}}</div>
-      {{/each}}
-
-      <form action="/add-comment" method="post">
+      <hr> {{/each}}
+      <form action="/add-comment" class="formComm" method="post">
         <input name="text" type="text" placeholder="Comment">
         <input name="postId" type="text" value="{{this._id}}" hidden>
         <input name="postLocation" class="postLocation" id="postLocation " type="text" value="{{this._owner.location}}" hidden>
