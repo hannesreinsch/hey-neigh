@@ -3,13 +3,9 @@ $primary: #ffffff;
 @import url("https://fonts.googleapis.com/css?family=Exo:800");
 @import "node_modules/bootstrap/scss/bootstrap";
 
-<<<<<<< HEAD
-
-=======
 a {
   color: black;
 }
->>>>>>> 20adc4f935b4f850a0c39921cffe15eb73a1cca5
 
 #map {
   height: 500px;
@@ -36,6 +32,7 @@ body {
 //index.hbs not logged in
 .h1-not-logged {
   font-size: 100px;
+  color: $primary;
   -webkit-text-stroke: 4px black;
 }
 

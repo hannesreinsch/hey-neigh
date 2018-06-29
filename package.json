@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "DEBUG=heyneigh:* nodemon ./bin/www"
+    "start-dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "axios": "^0.18.0",
