@@ -49,7 +49,7 @@ router.get("/", (req, res, next) => {
         .then(users => {
           posts.forEach(post => {
             users.forEach(user => {
-              if (user._id.toString() == post._owner._id.toString()) {
+              if (post._owner && user._id.toString() == post._owner._id.toString()) {
                 post.date = post.createdAt.toLocaleDateString();
                 post.hour = post.createdAt.toLocaleTimeString();
 
