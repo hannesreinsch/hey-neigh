@@ -45,7 +45,9 @@ body {
 }
 
 //index.hbs logged in
-
+.container h1 {
+  text-align: center;
+}
 #map {
   margin-top: 50px;
   border: 2px solid black;
@@ -62,6 +64,8 @@ body {
 
 .post-form {
   margin: 50px auto;
+  border-style: solid;
+  border-color: rgba(37, 84, 145, 0.89);
 }
 .dateCard {
   font-size: 13px;
@@ -73,22 +77,41 @@ body {
   text-align: left;
 }
 
+.card-body {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
 .card-footer {
+  padding: 0rem 0rem;
   font-size: 15px;
 }
 .card-header {
   flex-direction: row;
+  background-color: rgba(37, 84, 145, 0.89);
 }
 .formComm {
   margin-left: 60%;
 }
-
+.commD {
+  background-color: rgb(7, 137, 180);
+  width: 100%;
+}
 .commD p {
   font-size: 10px;
   font-style: italic;
   margin-left: 60%;
+  color: black;
 }
-
+.profCom {
+  background-color: rgb(7, 137, 180);
+  color: black;
+}
+ul li {
+  list-style: none;
+  text-align: left;
+}
 .profCom p {
   font-size: 10px;
   font-style: italic;

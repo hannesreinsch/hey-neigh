@@ -6316,6 +6316,9 @@ body {
 .button-not-logged {
   text-align: center; }
 
+.container h1 {
+  text-align: center; }
+
 #map {
   margin-top: 50px;
   border: 2px solid black; }
@@ -6328,7 +6331,9 @@ body {
   margin-top: 20px; }
 
 .post-form {
-  margin: 50px auto; }
+  margin: 50px auto;
+  border-style: solid;
+  border-color: rgba(37, 84, 145, 0.89); }
 
 .dateCard {
   font-size: 13px;
@@ -6339,19 +6344,39 @@ body {
   display: flex;
   text-align: left; }
 
+.card-body {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between; }
+
 .card-footer {
+  padding: 0rem 0rem;
   font-size: 15px; }
 
 .card-header {
-  flex-direction: row; }
+  flex-direction: row;
+  background-color: rgba(37, 84, 145, 0.89); }
 
 .formComm {
   margin-left: 60%; }
 
+.commD {
+  background-color: #0789b4;
+  width: 100%; }
+
 .commD p {
   font-size: 10px;
   font-style: italic;
-  margin-left: 60%; }
+  margin-left: 60%;
+  color: black; }
+
+.profCom {
+  background-color: #0789b4;
+  color: black; }
+
+ul li {
+  list-style: none;
+  text-align: left; }
 
 .profCom p {
   font-size: 10px;
