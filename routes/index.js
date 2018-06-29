@@ -42,7 +42,7 @@ router.get("/", (req, res, next) => {
               coordinates: [userRadius[0], userRadius[1]]
             },
             $minDistance: 0,
-            $maxDistance: 1000 // = 1km
+            $maxDistance: 2000 // = 1km
           }
         }
       })
