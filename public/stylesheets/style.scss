@@ -5,6 +5,7 @@ $primary: #ffffff;
 
 a {
   color: black;
+  
 }
 
 #map {
@@ -48,6 +49,7 @@ body {
 .container h1 {
   text-align: center;
 }
+
 #map {
   margin-top: 50px;
   border: 2px solid black;
@@ -60,13 +62,18 @@ body {
 
 .post-btn {
   margin-top: 20px;
+  border: 2px solid lightgrey;
 }
 
 .post-form {
-  margin: 50px auto;
-  border-style: solid;
-  border-color: rgba(37, 84, 145, 0.89);
+  margin: 80px auto;
+  // border-color: rgba(37, 84, 145, 0.89);
 }
+
+.post-form h2 {
+  background-color: lightgray
+}
+
 .dateCard {
   font-size: 13px;
   font-style: italic;
@@ -88,14 +95,16 @@ body {
   font-size: 15px;
 }
 .card-header {
+  height: 70px;
   flex-direction: row;
+
   background-color: rgba(37, 84, 145, 0.89);
 }
 .formComm {
   margin-left: 60%;
 }
 .commD {
-  background-color: rgb(7, 137, 180);
+  background-color: lightgray;
   width: 100%;
 }
 .commD p {
@@ -105,7 +114,7 @@ body {
   color: black;
 }
 .profCom {
-  background-color: rgb(7, 137, 180);
+  background-color: lightgray;
   color: black;
 }
 ul li {

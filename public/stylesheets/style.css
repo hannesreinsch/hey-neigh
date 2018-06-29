@@ -6328,12 +6328,14 @@ body {
   height: 100px; }
 
 .post-btn {
-  margin-top: 20px; }
+  margin-top: 20px;
+  border: 2px solid lightgrey; }
 
 .post-form {
-  margin: 50px auto;
-  border-style: solid;
-  border-color: rgba(37, 84, 145, 0.89); }
+  margin: 80px auto; }
+
+.post-form h2 {
+  background-color: lightgray; }
 
 .dateCard {
   font-size: 13px;
@@ -6354,6 +6356,7 @@ body {
   font-size: 15px; }
 
 .card-header {
+  height: 70px;
   flex-direction: row;
   background-color: rgba(37, 84, 145, 0.89); }
 
@@ -6361,7 +6364,7 @@ body {
   margin-left: 60%; }
 
 .commD {
-  background-color: #0789b4;
+  background-color: lightgray;
   width: 100%; }
 
 .commD p {
@@ -6371,7 +6374,7 @@ body {
   color: black; }
 
 .profCom {
-  background-color: #0789b4;
+  background-color: lightgray;
   color: black; }
 
 ul li {
