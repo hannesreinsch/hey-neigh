@@ -22,15 +22,22 @@ router.get("/", (req, res, next) => {
   //console.log("debug current userRad", userRadLng, userRadLat);
   Post.find({})
     .populate("_owner")
+    //.populate("_comments") MAYBE YOU NEED IT
     .populate({
       path: "_comments",
       model: "Comment",
       populate: {
         path: "_owner",
         model: "User"
-      }
+      },
+      // populate: {
+      //   path: "createdAt",
+      //   model: "Comment"
+      // },
     })
+  
     .then(posts => {
+     
       User.find({
         location: {
           $near: {
@@ -48,7 +55,11 @@ router.get("/", (req, res, next) => {
           // console.log("debug users", users);
           posts.forEach(post => {
             // console.log("debug post", post);
-            // console.log("precise id post", post._owner._id);
+            if(post._comments.length > 0){
+              console.log("precise id post", post._comments);
+            } else {
+              console.log('yolo')
+            }
             users.forEach(user => {
               //console.log("precise id USER", user._id.toString());
               //console.log("typeof", typeof user._id.toString());
